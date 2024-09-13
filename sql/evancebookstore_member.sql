@@ -18,34 +18,35 @@ USE `evancebookstore`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `memberinfo`
+-- Table structure for table `member`
 --
 
-DROP TABLE IF EXISTS `memberinfo`;
+DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `memberinfo` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `userId` varchar(45) NOT NULL,
-  `username` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `address1` varchar(45) DEFAULT NULL,
-  `address2` varchar(45) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
+CREATE TABLE `member` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `userId` varchar(45) COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'userId',
+  `password` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'password',
+  `username` varchar(45) COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'username',
+  `balance` int DEFAULT NULL,
+  `point` int DEFAULT NULL,
+  `accumulatedAmount` int DEFAULT NULL,
+  `vipLevel` enum('normal','silver','gold') COLLATE utf8mb3_unicode_ci NOT NULL,
+  `phone` varchar(45) COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `userId_UNIQUE` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `memberinfo`
+-- Dumping data for table `member`
 --
 
-LOCK TABLES `memberinfo` WRITE;
-/*!40000 ALTER TABLE `memberinfo` DISABLE KEYS */;
-INSERT INTO `memberinfo` VALUES (1,'notmember','aaaa','aaa','aaa','aaa','1992-11-22'),(2,'eson','eson','123123','中山區','士林區','1998-02-22'),(5,'aaaww','aaaww','asdsd','新北市','中山區','1999-01-01'),(6,'evance','evance','eeee2222','taipei','taipei','2024-01-01'),(7,'lero','lero','ssss@1111','taipei','中正區','1999-01-01'),(8,'apple','apple','ffffssss','Acity','Bcity',NULL),(9,'kkrrooxx','kkrrooxx','12213','新北市','Bcity','1999-02-02'),(10,'lucy','lucy','A','台中市','Bcity',NULL),(11,'jack','jack','A','台中市','台中市','1987-09-09'),(12,'tommy','tommy','A','新北市','台北市','1999-01-01');
-/*!40000 ALTER TABLE `memberinfo` ENABLE KEYS */;
+LOCK TABLES `member` WRITE;
+/*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES (1,'notmember','2131dsijknqjhehaln','非會員',0,0,0,'normal','notmember'),(2,'eson','111','david',111,111,111,'normal','339283'),(5,'aaaww','1','rose',1,1,1,'normal','4577212'),(6,'evance','2222','evance',0,0,0,'normal','46554'),(7,'lero','11111','lero',623,123,2599,'silver','226262'),(8,'apple','ap123','apple',998,85,1712,'silver','2215167'),(9,'kkrrooxx','1111','a89aa88',0,0,0,'normal','434362'),(10,'lucy','1109','lucy',73,85,1727,'silver','0987654321'),(11,'jack','1111','jack',977,51,1023,'normal','09123'),(12,'tommy','111333','tommy',1585,91,2321,'silver','134672');
+/*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-13  9:23:56
+-- Dump completed on 2024-09-13 12:06:42
