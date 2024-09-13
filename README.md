@@ -1,7 +1,7 @@
 # BookStore專案 version 3
 <hr>
 
-## [操作手冊](blog/main/操作手冊.pdf)
+## [操作手冊](操作手冊.pdf)
 <hr>
 <h3>書籍購物系統
 <hr>
