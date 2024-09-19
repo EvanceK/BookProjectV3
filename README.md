@@ -23,11 +23,11 @@
   </ul>
 <hr>
   
-<h4>員工專區-管理者介面<br>
+<h4>員工專區-管理者介面 -> 開發中 debug 陸續修改中 <br>
   <ul>
-      <li>會員名單管理 (CRUD)</li>
-      <li>員工名單管理 (Read only)</li>
-      <li>商品項目管理 (Read only)</li>
-      <li>員工出勤紀錄 (未開發)</li>
-      <li>訂單記錄 (Read only)</li>
+      <li>會員名單管理 (CRUD) </li>
+      <li>員工名單管理 </li>
+      <li>商品項目管理 </li>
+      <li>員工出勤紀錄 </li>
+      <li>訂單記錄 </li>
   </ul>
