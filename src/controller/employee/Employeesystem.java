@@ -110,7 +110,7 @@ public class Employeesystem extends JFrame {
 		JLabel carcount = new JLabel(String.valueOf(shoppingcarcount));
 		carcount.setFont(new Font("新細明體", Font.BOLD, 14));
 		carcount.setHorizontalAlignment(SwingConstants.CENTER);
-		carcount.setBounds(769, 3, 38, 46);
+		carcount.setBounds(904, 3, 38, 46);
 		contentPane.add(carcount);
 
 		// 監聽car
@@ -215,7 +215,7 @@ public class Employeesystem extends JFrame {
 				}
 			}
 		});
-		btnNewButton_4.setBounds(374, 105, 91, 68);
+		btnNewButton_4.setBounds(359, 111, 91, 68);
 		panel.add(btnNewButton_4);
 	
 		JButton btnNewButton_3 = new JButton("加入購物車");
@@ -234,7 +234,7 @@ public class Employeesystem extends JFrame {
 	
 			}
 		});
-		btnNewButton_3.setBounds(374, 27, 93, 68);
+		btnNewButton_3.setBounds(359, 26, 93, 68);
 		panel.add(btnNewButton_3);
 		
 		JButton btnNewButton_1 = new JButton("購物車");
@@ -246,7 +246,7 @@ public class Employeesystem extends JFrame {
 				cks.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(662, 3, 109, 46);
+		btnNewButton_1.setBounds(811, 3, 96, 46);
 		contentPane.add(btnNewButton_1);
 		JLabel time = new JLabel("");
 		time.setBounds(240, 10, 120, 23);

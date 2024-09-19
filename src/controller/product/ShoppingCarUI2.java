@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import controller.SystemUI;
 import model.BookOrders;
 import model.BookOrdersDetail;
 import model.Member;
@@ -52,7 +53,7 @@ public class ShoppingCarUI2 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	protected static List<Products> shoppingCar;
-	private static Connection conn = null;
+	private static Connection conn;
 	private static Member m;
 	private ProductsServiceImpl psi = new ProductsServiceImpl();
 	private static int finalAmount, pointsUsed;
@@ -148,8 +149,6 @@ public class ShoppingCarUI2 extends JFrame {
 				} else if (radio3.isSelected()) {
 					finaladdress = otheraddress.getText();
 				}
-				
-				
 				//進行支付 事務功能
 
 				try {
@@ -161,9 +160,10 @@ public class ShoppingCarUI2 extends JFrame {
 					m.setPoint(m.getPoint() + finalAmount/20); // 消費金額點數回饋 20元一點
 					m.setVipLevel(m.getVipLevel());
 					msi.updateMemberAll(conn, m); //修改資料庫資訊
-					 System.out.println("修改會員資料成功");
+					System.out.println("修改會員資料成功");
 												//修改訂單資訊
-					 
+					System.out.println(10/0);//模擬異常
+
 					bookOrders.setNewPoint(finalAmount/20);
 					String getneworderno = bosi.getneworderno(conn);
 				    bookOrders.setOrderId(getneworderno);
@@ -174,31 +174,36 @@ public class ShoppingCarUI2 extends JFrame {
 					bookOrders.setNewPoint(finalAmount/20);
 					bookOrders.setOrderTime(LocalDateTime.now());
 					bosi.insert(conn, bookOrders);
-					
 					System.out.println("插入訂單成功");
-					
 					bodsi.insertAll(conn, bookOrdersDetails);
 					System.out.println("插入訂單明細成功");
 					
 					javax.swing.JOptionPane.showMessageDialog(null, "結帳成功！");
-					
-					
 					conn.commit();//提交數據
 					System.out.println("提交成功");
+					ShoppingCarUI3 shoppingCarUI3 = new ShoppingCarUI3(conn, m, bookOrders, bookOrdersDetails);
+					shoppingCarUI3.setVisible(true);
+					dispose();
 					
-				} catch (SQLException e1) {
-					 System.out.println("捕捉到 SQL 異常，準備 rollback...");
-					 try {
-			                conn.rollback();	//有問題回朔到最初
-			                System.out.println("Rollback 成功");
-			                
-			            } catch (SQLException ex) {
-			                ex.printStackTrace();
-			            }
+					
+				} catch (Exception e1) {
+					    System.out.println("捕捉到異常，準備 rollback...");
+					    try {
+					        conn.rollback(); // 有問題回滔到最初
+					        System.out.println("Rollback 成功");
+							javax.swing.JOptionPane.showMessageDialog(null, "結帳出現系統異常，請重新登入或聯絡客服。");
+							//強制回到首頁並要求要重新登入
+							SystemUI systemUI = new SystemUI();
+							systemUI.setVisible(true);
+							dispose();
+							dispose();
+							
+
+					    } catch (SQLException ex) {
+					        System.out.println("Rollback 失敗");
+					        ex.printStackTrace();
+					    }
 					e1.printStackTrace();
-					
-					
-					
 					
 				}finally {
 					 try {
@@ -208,10 +213,7 @@ public class ShoppingCarUI2 extends JFrame {
 			                er.printStackTrace();
 			            }
 				}
-				ShoppingCarUI3 shoppingCarUI3 = new ShoppingCarUI3(conn, m, bookOrders, bookOrdersDetails);
-				shoppingCarUI3.setVisible(true);
-				dispose();
-
+		
 			}
 		});
 		checkoutButton.setBounds(470, 507, 100, 30);
