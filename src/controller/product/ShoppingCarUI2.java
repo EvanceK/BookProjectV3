@@ -162,7 +162,7 @@ public class ShoppingCarUI2 extends JFrame {
 					msi.updateMemberAll(conn, m); //修改資料庫資訊
 					System.out.println("修改會員資料成功");
 												//修改訂單資訊
-					System.out.println(10/0);//模擬異常
+//					System.out.println(10/0);//模擬異常
 
 					bookOrders.setNewPoint(finalAmount/20);
 					String getneworderno = bosi.getneworderno(conn);
